@@ -1,12 +1,18 @@
-import { Feather } from "feather-client-react";
+import React, { useEffect } from "react";
+import { ApolloProvider } from "@apollo/client";
+import { FeatherProvider } from "feather-client-react";
+import { apollo } from "../api/apollo.js";
+import { feather } from "../api/feather.js";
 import Home from "./home";
 import "../styles.css";
 
 function App({ Component, pageProps }) {
   return (
-    <Feather apiKey="pk_live_Uyku8bQZZqQn8VngNYHK0IQS4AfdOJbe">
-      <Home />
-    </Feather>
+    <FeatherProvider client={feather}>
+      <ApolloProvider client={apollo}>
+        <Home />
+      </ApolloProvider>
+    </FeatherProvider>
   );
 }
 

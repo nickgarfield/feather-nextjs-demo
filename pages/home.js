@@ -1,10 +1,12 @@
 import React from "react";
-import { AuthenticationForm, withCurrentUser } from "feather-client-react";
+import Todos from "../components/Todos.js";
+import { AuthenticationForm, useCurrentUser } from "feather-client-react";
 
 function Home(props) {
-  if (props.isLoadingCurrentUser) return <div />;
-  if (!props.currentUser) return <AuthenticationForm />;
-  return <div>Current user: {props.currentUser.email}</div>;
+  const { loading, currentUser } = useCurrentUser();
+  if (loading) return <div />;
+  if (!currentUser) return <AuthenticationForm />;
+  return <Todos />;
 }
 
-export default withCurrentUser(Home);
+export default Home;
